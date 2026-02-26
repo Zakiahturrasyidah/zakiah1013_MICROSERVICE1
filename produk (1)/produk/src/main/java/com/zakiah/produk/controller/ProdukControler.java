@@ -1,0 +1,42 @@
+package com.zakiah.produk.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
+
+import com.zakiah.produk.model.produk;
+import com.zakiah.produk.service.ProdukService;
+
+@RestController
+public class ProdukControler {
+    @Autowired
+    private ProdukService produkService;
+
+    @GetMapping
+    public List<produk> getAllProduk() {
+        return produkService.getAllProduks();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<produk> getProdukById(@PathVariable Long id){
+        produk produk = produkService.getProdukbyId(id);
+        return produk != null ? ResponseEntity.ok(produk) : ResponseEntity.notFound().build();
+    }
+
+    @PostMapping
+    public produk createProduk(@RequestBody produk produk) {
+        return produkService.createProduk(produk);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<?> deleteProduk(@PathVariable Long id){
+        produkService.deleteProduk(id);
+        return ResponseEntity.ok().build();
+    }
+}
