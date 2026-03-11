@@ -1,0 +1,5 @@
+com\zakiah\pelanggan\model\pelanggan.class
+com\zakiah\pelanggan\PelangganApplication.class
+com\zakiah\pelanggan\controller\PelangganController.class
+com\zakiah\pelanggan\repository\PelangganRepository.class
+com\zakiah\pelanggan\service\PelangganService.class
